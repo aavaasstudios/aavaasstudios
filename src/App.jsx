@@ -34,7 +34,7 @@ function LuxuryObject() {
         />
       </mesh>
 
-      <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, 0, 0]}>
+      <mesh rotation={[Math.PI / 2, 0, 0]}>
         <torusGeometry args={[1.8, 0.045, 16, 100]} />
         <meshStandardMaterial
           color="#c9a227"
@@ -43,7 +43,7 @@ function LuxuryObject() {
         />
       </mesh>
 
-      <mesh rotation={[0, Math.PI / 2, 0]} position={[0, 0, 0]}>
+      <mesh rotation={[0, Math.PI / 2, 0]}>
         <torusGeometry args={[1.8, 0.045, 16, 100]} />
         <meshStandardMaterial
           color="#c9a227"
@@ -138,14 +138,11 @@ function ProjectModal({ project, onClose }) {
   if (!project) return null;
 
   const whatsappMessage = encodeURIComponent(
-    `Hello Aavaas Studios, I am interested in the ${project.title} project. I would like to discuss a similar design.`
+    `Hello Aavaas Studios, I am interested in the ${project.title} concept. I would like to discuss a similar interior design project.`
   );
 
   return (
-    <div
-      className="modal-overlay"
-      onClick={onClose}
-    >
+    <div className="modal-overlay" onClick={onClose}>
       <div
         className="project-modal"
         onClick={(event) => event.stopPropagation()}
@@ -170,9 +167,13 @@ function ProjectModal({ project, onClose }) {
             {project.number}
           </span>
 
-          <span className="modal-category">
-            {project.category}
-          </span>
+          <span className="modal-category modal-project-category">
+  {project.category}
+</span>
+
+<span className="modal-category modal-project-category">
+  CONCEPT PROJECT
+</span>
 
           <h3>{project.title}</h3>
 
@@ -223,7 +224,7 @@ function App() {
       image:
         "https://i.pinimg.com/originals/62/c7/e7/62c7e7ffe897527f857071c6bcd4eedb.png",
       description:
-        "A refined residential concept built around clean geometry, warm materials and quiet luxury.",
+        "A refined residential concept exploring clean geometry, warm materials and quiet luxury for a contemporary living environment.",
       style: "Modern Luxury",
       focus: "Living Space",
       approach: "Minimal + Warm",
@@ -235,7 +236,7 @@ function App() {
       image:
         "https://i.pinimg.com/originals/92/74/7f/92747f46873aa056879886be283877ae.jpg",
       description:
-        "A sophisticated bedroom concept balancing comfort, atmosphere and timeless material choices.",
+        "A sophisticated bedroom concept balancing comfort, atmosphere and timeless material choices for a calm private retreat.",
       style: "Contemporary",
       focus: "Private Space",
       approach: "Soft + Elegant",
@@ -247,7 +248,7 @@ function App() {
       image:
         "https://i.pinimg.com/originals/01/45/d4/0145d4c13db4fa2b345e70740efe9fe9.jpg",
       description:
-        "A premium workspace designed to communicate confidence, focus and understated luxury.",
+        "A premium workspace concept designed to communicate confidence, focus and understated luxury through refined spatial planning.",
       style: "Executive Modern",
       focus: "Workspace",
       approach: "Bold + Refined",
@@ -282,7 +283,6 @@ function App() {
 
   return (
     <div className="app">
-
       {/* NAVIGATION */}
       <header className="navbar">
         <a
@@ -293,15 +293,14 @@ function App() {
           AAVAAS
         </a>
 
-        {/* DESKTOP NAV */}
         <nav className="nav-links">
           <a href="#about">ABOUT</a>
+          <a href="#founder">FOUNDER</a>
           <a href="#services">SERVICES</a>
           <a href="#portfolio">PORTFOLIO</a>
           <a href="#contact">CONTACT</a>
         </nav>
 
-        {/* MOBILE MENU BUTTON */}
         <button
           className={`menu-toggle ${menuOpen ? "menu-active" : ""}`}
           onClick={() => setMenuOpen(!menuOpen)}
@@ -321,42 +320,34 @@ function App() {
         }`}
       >
         <div className="mobile-menu-inner">
-
           <div className="mobile-menu-top">
             <span>MENU</span>
             <span>AAVAAS STUDIOS</span>
           </div>
 
           <nav className="mobile-nav-links">
-            <a
-              href="#about"
-              onClick={closeMenu}
-            >
+            <a href="#about" onClick={closeMenu}>
               <span>01</span>
               ABOUT
             </a>
 
-            <a
-              href="#services"
-              onClick={closeMenu}
-            >
+            <a href="#founder" onClick={closeMenu}>
               <span>02</span>
+              FOUNDER
+            </a>
+
+            <a href="#services" onClick={closeMenu}>
+              <span>03</span>
               SERVICES
             </a>
 
-            <a
-              href="#portfolio"
-              onClick={closeMenu}
-            >
-              <span>03</span>
+            <a href="#portfolio" onClick={closeMenu}>
+              <span>04</span>
               PORTFOLIO
             </a>
 
-            <a
-              href="#contact"
-              onClick={closeMenu}
-            >
-              <span>04</span>
+            <a href="#contact" onClick={closeMenu}>
+              <span>05</span>
               CONTACT
             </a>
           </nav>
@@ -373,52 +364,69 @@ function App() {
               WHATSAPP ↗
             </a>
           </div>
-
         </div>
       </div>
 
-      {/* HERO */}
       <main>
+        {/* HERO */}
+        <section className="hero" id="home">
+          <div className="hero-grid-lines"></div>
 
-        <section
-          className="hero"
-          id="home"
-        >
           <div className="hero-content">
-
             <Reveal>
-              <span className="hero-eyebrow">
-                AAVAAS STUDIOS
-              </span>
+              <div className="hero-topline">
+                <span className="hero-eyebrow">
+                  AAVAAS STUDIOS
+                </span>
+
+                <span className="hero-location">
+                  KATHMANDU · NEPAL
+                </span>
+              </div>
             </Reveal>
 
             <Reveal>
-              <h1>
-                AAVAAS
-              </h1>
+              <div className="hero-title-wrap">
+                <h1>AAVAAS</h1>
+              </div>
             </Reveal>
 
             <Reveal>
               <p className="hero-tagline">
                 Designing spaces.
                 <br />
-                Creating experiences.
+                <span>Creating experiences.</span>
               </p>
             </Reveal>
 
             <Reveal>
-              <a
-                href="#portfolio"
-                className="hero-button"
-              >
-                EXPLORE OUR WORK
-                <span>↗</span>
-              </a>
-            </Reveal>
+              <div className="hero-actions">
+                <a
+                  href="#portfolio"
+                  className="hero-button"
+                >
+                  <span>EXPLORE OUR WORK</span>
+                  <span className="hero-button-arrow">↗</span>
+                </a>
 
+                <span className="hero-caption">
+                  INTERIOR DESIGN · 3D · 2D
+                </span>
+              </div>
+            </Reveal>
           </div>
 
-          <div className="hero-3d">
+          <div className="hero-visual-label hero-label-top">
+            <span>FORM / 001</span>
+            <span>SPATIAL STUDIES</span>
+          </div>
+
+          <div className="hero-3d hero-3d-behind-title">
+            <div className="hero-glow"></div>
+
+            <div className="hero-ring hero-ring-one"></div>
+            <div className="hero-ring hero-ring-two"></div>
+
             <Canvas
               camera={{
                 position: [0, 0, 7],
@@ -428,6 +436,11 @@ function App() {
             >
               <Scene3D />
             </Canvas>
+          </div>
+
+          <div className="hero-visual-label hero-label-bottom">
+            <span>EST. 2026</span>
+            <span>DESIGN / EXPERIENCE</span>
           </div>
 
           <div className="scroll-indicator">
@@ -441,9 +454,7 @@ function App() {
           className="about-section section"
           id="about"
         >
-          <div className="section-number">
-            01
-          </div>
+          <div className="section-number">01</div>
 
           <Reveal>
             <div className="about-heading">
@@ -460,7 +471,6 @@ function App() {
           </Reveal>
 
           <div className="about-grid">
-
             <Reveal>
               <div className="about-story">
                 <p className="large-text">
@@ -484,7 +494,6 @@ function App() {
 
             <Reveal>
               <div className="about-values">
-
                 <div className="value-item">
                   <span>01</span>
                   <h3>INTENTION</h3>
@@ -511,10 +520,72 @@ function App() {
                     the strongest impressions.
                   </p>
                 </div>
+              </div>
+            </Reveal>
+          </div>
+        </section>
 
+        {/* FOUNDER */}
+        <section
+          className="founder-section section"
+          id="founder"
+        >
+          <div className="section-number">02</div>
+
+          <div className="founder-layout">
+            <Reveal>
+              <div className="founder-intro">
+                <span className="section-eyebrow">
+                  THE FOUNDER
+                </span>
+
+                <div className="founder-name-wrap">
+                  <h2>
+                    KAUSHAL
+                    <br />
+                    PANDEY
+                  </h2>
+                </div>
+
+                <p className="founder-role">
+                  FOUNDER & CREATIVE DIRECTOR
+                </p>
               </div>
             </Reveal>
 
+            <Reveal>
+              <div className="founder-story">
+                <div className="founder-mark">
+                  K
+                </div>
+
+                <p className="founder-large-text">
+                  Aavaas Studios began with a simple
+                  ambition: to build something meaningful
+                  from the ground up.
+                </p>
+
+                <p>
+                  Initiated by Kaushal Pandey, Aavaas Studios
+                  brings together interior design,
+                  visualization and a strong attention to
+                  detail to create spaces that feel
+                  intentional and personal.
+                </p>
+
+                <p>
+                  The vision is not simply to design
+                  beautiful interiors, but to build a
+                  studio that grows with every project,
+                  every client and every idea.
+                </p>
+
+                <div className="founder-signature">
+                  <span>KAUSHAL PANDEY</span>
+                  <small>FOUNDER · AAVAAS STUDIOS</small>
+                </div>
+              </div>
+            </Reveal>
           </div>
         </section>
 
@@ -523,47 +594,39 @@ function App() {
           className="services-section section"
           id="services"
         >
-          <div className="section-number">
-            02
-          </div>
+          <div className="section-number">03</div>
 
           <Reveal>
             <div className="services-content">
-
               <span className="services-eyebrow">
                 SERVICES & PACKAGES
               </span>
 
-              <h2>
-                DESIGN YOUR WAY.
-              </h2>
+              <h2>DESIGN YOUR WAY.</h2>
 
               <p className="services-intro">
-                From a single room to a complete interior,
-                choose the level of design support that
-                fits your project.
+                Whether you need a clear starting direction,
+                a complete visual concept or detailed
+                documentation for execution, choose the
+                level of support your project needs.
               </p>
-
             </div>
           </Reveal>
 
           <div className="packages-grid">
-
             <Reveal>
               <div className="package-card">
-
                 <div className="package-top">
                   <span>01</span>
                   <span>ESSENTIAL</span>
                 </div>
 
-                <h3>
-                  STARTING POINT
-                </h3>
+                <h3>STARTING POINT</h3>
 
                 <p className="package-description">
-                  The foundation for creating a clear
-                  design direction for your space.
+                  Ideal for clients who have a space but
+                  need a strong creative direction before
+                  moving forward.
                 </p>
 
                 <div className="package-divider"></div>
@@ -581,13 +644,11 @@ function App() {
                 >
                   DISCUSS THIS PACKAGE ↗
                 </a>
-
               </div>
             </Reveal>
 
             <Reveal>
               <div className="package-card package-featured">
-
                 <div className="package-badge">
                   MOST REQUESTED
                 </div>
@@ -597,13 +658,13 @@ function App() {
                   <span>SIGNATURE</span>
                 </div>
 
-                <h3>
-                  COMPLETE CONCEPT
-                </h3>
+                <h3>COMPLETE CONCEPT</h3>
 
                 <p className="package-description">
-                  A complete design concept balancing
-                  planning, visualization and aesthetics.
+                  For clients who want to see how their
+                  space will come together through planning,
+                  materials, furniture and detailed
+                  visualization.
                 </p>
 
                 <div className="package-divider"></div>
@@ -622,25 +683,22 @@ function App() {
                 >
                   DISCUSS THIS PACKAGE ↗
                 </a>
-
               </div>
             </Reveal>
 
             <Reveal>
               <div className="package-card">
-
                 <div className="package-top">
                   <span>03</span>
                   <span>PREMIUM</span>
                 </div>
 
-                <h3>
-                  FULL DESIGN
-                </h3>
+                <h3>FULL DESIGN</h3>
 
                 <p className="package-description">
-                  A complete interior design solution
-                  from concept to detailed documentation.
+                  A complete design service for projects
+                  that require both creative direction and
+                  detailed documentation for execution.
                 </p>
 
                 <div className="package-divider"></div>
@@ -659,10 +717,8 @@ function App() {
                 >
                   DISCUSS THIS PACKAGE ↗
                 </a>
-
               </div>
             </Reveal>
-
           </div>
 
           <Reveal>
@@ -672,7 +728,6 @@ function App() {
           </Reveal>
 
           <div className="services-grid">
-
             <Reveal>
               <div className="service-card">
                 <span>01</span>
@@ -716,35 +771,41 @@ function App() {
                 </p>
               </div>
             </Reveal>
-
           </div>
         </section>
 
-        {/* PORTFOLIO */}
+        {/* PORTFOLIO / CONCEPT COLLECTION */}
         <section
           className="portfolio-section section"
           id="portfolio"
         >
-          <div className="section-number">
-            03
-          </div>
+          <div className="section-number">04</div>
 
           <Reveal>
             <div className="portfolio-heading">
               <span className="section-eyebrow">
-                SELECTED WORK
+                CONCEPT COLLECTION
               </span>
 
               <h2>
-                SPACES WITH
+                DESIGN
                 <br />
-                CHARACTER.
+                CONCEPTS.
               </h2>
             </div>
           </Reveal>
 
-          <div className="portfolio-grid">
+          <Reveal>
+            <div className="portfolio-intro">
+              <p>
+                A selection of interior design concepts
+                exploring different spaces, materials and
+                visual directions.
+              </p>
+            </div>
+          </Reveal>
 
+          <div className="portfolio-grid">
             {projects.map((project) => (
               <Reveal key={project.number}>
                 <button
@@ -760,31 +821,22 @@ function App() {
                     />
 
                     <div className="portfolio-overlay">
-                      <span>
-                        VIEW PROJECT ↗
-                      </span>
+                      <span>VIEW CONCEPT ↗</span>
                     </div>
                   </div>
 
                   <div className="portfolio-info">
-                    <span>
-                      {project.number}
-                    </span>
+                    <span>{project.number}</span>
 
                     <div>
-                      <span>
-                        {project.category}
-                      </span>
+                      <span>{project.category}</span>
 
-                      <h3>
-                        {project.title}
-                      </h3>
+                      <h3>{project.title}</h3>
                     </div>
                   </div>
                 </button>
               </Reveal>
             ))}
-
           </div>
         </section>
 
@@ -793,13 +845,10 @@ function App() {
           className="contact-section section"
           id="contact"
         >
-          <div className="section-number">
-            04
-          </div>
+          <div className="section-number">05</div>
 
           <Reveal>
             <div className="contact-content">
-
               <span className="section-eyebrow">
                 START A PROJECT
               </span>
@@ -814,7 +863,16 @@ function App() {
 
               <p>
                 Have a space in mind?
-                Let's turn the idea into something real.
+                <br />
+                Tell us what you're imagining, and let's
+                turn the idea into a considered design.
+              </p>
+
+              <p>
+                Whether it's a single room, a complete
+                home, a workspace or a larger interior
+                project, Aavaas Studios is ready to hear
+                about it.
               </p>
 
               <a
@@ -827,19 +885,21 @@ function App() {
                 <span>↗</span>
               </a>
 
+              <div className="contact-note">
+                <span>DIRECT INQUIRIES</span>
+                <span>WHATSAPP · KATHMANDU · NEPAL</span>
+              </div>
             </div>
           </Reveal>
         </section>
-
       </main>
 
       {/* FOOTER */}
       <footer className="footer">
-
         <div className="footer-top">
-
           <div className="footer-brand">
             <span>AAVAAS</span>
+
             <p>
               Designing spaces.
               <br />
@@ -848,37 +908,18 @@ function App() {
           </div>
 
           <div className="footer-links">
-
-            <a href="#about">
-              ABOUT
-            </a>
-
-            <a href="#services">
-              SERVICES
-            </a>
-
-            <a href="#portfolio">
-              PORTFOLIO
-            </a>
-
-            <a href="#contact">
-              CONTACT
-            </a>
-
+            <a href="#about">ABOUT</a>
+            <a href="#founder">FOUNDER</a>
+            <a href="#services">SERVICES</a>
+            <a href="#portfolio">PORTFOLIO</a>
+            <a href="#contact">CONTACT</a>
           </div>
-
         </div>
 
         <div className="footer-bottom">
-          <span>
-            © 2026 AAVAAS STUDIOS
-          </span>
-
-          <span>
-            KATHMANDU · NEPAL
-          </span>
+          <span>© 2026 AAVAAS STUDIOS</span>
+          <span>KATHMANDU · NEPAL</span>
         </div>
-
       </footer>
 
       {/* PROJECT MODAL */}
@@ -886,7 +927,6 @@ function App() {
         project={selectedProject}
         onClose={() => setSelectedProject(null)}
       />
-
     </div>
   );
 }
